@@ -164,15 +164,16 @@ void update_display(PblTm *current_time) {
         
     unsigned int unix_time;
     /* Convert time to seconds since epoch. */
-    unix_time = ((0-TIME_ZONE_OFFSET)*3600) + /* time zone offset */
-    + current_time->tm_sec /* start with seconds */
-    + current_time->tm_min*60 /* add minutes */
-    + current_time->tm_hour*3600 /* add hours */
-    + current_time->tm_yday*86400 /* add days */
-    + (current_time->tm_year-70)*31536000 /* add years since 1970 */
-    + ((current_time->tm_year-69)/4)*86400 /* add a day after leap years, starting in 1973 */
-    - ((current_time->tm_year-1)/100)*86400 /* remove a leap day every 100 years, starting in 2001 */
-    + ((current_time->tm_year+299)/400)*86400; /* add a leap day back every 400 years, starting in 2001*/
+    //unix_time = ((0-TIME_ZONE_OFFSET)*3600) + /* time zone offset */
+    //+ current_time->tm_sec /* start with seconds */
+    //+ current_time->tm_min*60 /* add minutes */
+    //+ current_time->tm_hour*3600 /* add hours */
+    //+ current_time->tm_yday*86400 /* add days */
+    //+ (current_time->tm_year-70)*31536000 /* add years since 1970 */
+    //+ ((current_time->tm_year-69)/4)*86400 /* add a day after leap years, starting in 1973 */
+    //- ((current_time->tm_year-1)/100)*86400 /* remove a leap day every 100 years, starting in 2001 */
+    //+ ((current_time->tm_year+299)/400)*86400; /* add a leap day back every 400 years, starting in 2001*/
+    unix_time = time(NULL); // how to PROPERLY grab UNIX time :)
     
     /* Draw each digit in the correct location. */
     for(int i=0; i<TOTAL_DIGITS; i++) {
